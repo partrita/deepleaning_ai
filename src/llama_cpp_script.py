@@ -8,8 +8,7 @@ CONTEXT_SIZE: int = 512
 
 
 # LOAD THE MODEL
-llm_model: Llama = Llama(model_path=MODEL_PATH,
-                        n_ctx=CONTEXT_SIZE)
+llm_model: Llama = Llama(model_path=MODEL_PATH, n_ctx=CONTEXT_SIZE)
 
 
 def generate_text_from_prompt(
@@ -18,11 +17,11 @@ def generate_text_from_prompt(
     temperature: float = 0.3,
     top_p: float = 0.1,
     echo: bool = True,
-    stop: List[str] = ["Q", "\n"]
+    stop: List[str] = ["Q", "\n"],
 ) -> Dict[str, Any]:
     """
     Generate text response from the LLM model based on input prompt.
-    
+
     Args:
         user_prompt: Input text prompt
         max_tokens: Maximum number of tokens to generate
@@ -30,7 +29,7 @@ def generate_text_from_prompt(
         top_p: Controls diversity via nucleus sampling
         echo: Whether to echo the prompt in the output
         stop: List of strings that will stop generation when encountered
-        
+
     Returns:
         Dictionary containing model's response and metadata
     """

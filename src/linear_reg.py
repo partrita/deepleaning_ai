@@ -40,8 +40,7 @@ with torch.no_grad():
     print("훈련 후 입력이 4일 때의 예측값 :", pred_y)
 
 # nn.Module 로 구현하는 선형회귀
-import torch
-import torch.optim as optim
+
 
 # 재사용을 위해 랜덤값을 초기화 합니다.
 torch.manual_seed(42)

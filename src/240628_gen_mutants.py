@@ -72,7 +72,7 @@ def sequences_to_dataframe(sequences):
     df = pd.DataFrame()
 
     for i, sequence in enumerate(sequences):
-        df[f"{i+1}"] = list(sequence)
+        df[f"{i + 1}"] = list(sequence)
 
     df.index = range(118, 118 + len(df))
     return df

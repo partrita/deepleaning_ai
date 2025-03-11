@@ -1,4 +1,8 @@
 from datasets import load_dataset
+from transformers import TrainingArguments, Trainer
+import numpy as np
+import evaluate
+from transformers import AutoModelForSequenceClassification
 
 # 파인튜닝할 데이터셋 준비
 dataset = load_dataset("yelp_review_full")
@@ -21,7 +25,6 @@ tokenized_datasets = dataset.map(tokenize_function, batched=True)
 small_train_dataset = tokenized_datasets["train"].shuffle(seed=42).select(range(1000))
 small_eval_dataset = tokenized_datasets["test"].shuffle(seed=42).select(range(1000))
 
-from transformers import AutoModelForSequenceClassification
 
 # 모델 가져오기
 model = AutoModelForSequenceClassification.from_pretrained(
@@ -29,8 +32,7 @@ model = AutoModelForSequenceClassification.from_pretrained(
 )
 
 
-import numpy as np
-import evaluate
+
 
 # 평가하기
 metric = evaluate.load("accuracy")
@@ -42,7 +44,6 @@ def compute_metrics(eval_pred):
     return metric.compute(predictions=predictions, references=labels)
 
 
-from transformers import TrainingArguments, Trainer
 
 
 # 체크포인트(checkpoints)를 저장할 위치를 지정합니다
